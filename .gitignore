@@ -1,0 +1,24 @@
+# Planejamento e anotacoes locais: citam a procedencia do projeto e nao vao
+# ao remoto. O padrao precisa do asterisco na frente — `.local.*` casaria so
+# com arquivos chamados literalmente `.local.algo`, e PLANO.local.md passaria.
+*.local.*
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Node
+node_modules/
+
+# Dados brutos da CVM: ~140 MB, reprodutiveis com pipeline/01_ingestao.py
+dados/brutos/
+
+# Parquet intermediario: formato de trabalho do pipeline, reprodutivel.
+dados/*.parquet
+
+# Screenshot gerado por verificar/app.browser.mjs
+verificar/app.png
+
+# Os JSON em app/dados/ SAO versionados de proposito: sao o que faz o app
+# rodar sem precisar do pipeline Python.

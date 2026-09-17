@@ -1,0 +1,13 @@
+{
+    "name": "recomendador-fundos-app",
+    "version": "1.0.0",
+    "description": "Interface TF.js do recomendador de classes de fundos da CVM por perfil",
+    "type": "module",
+    "scripts": {
+        "start": "browser-sync -w . --server --port 3000 --no-open --files 'index.html, style.css, src/**/*.js, dados/*.json'"
+    },
+    "license": "ISC",
+    "devDependencies": {
+        "browser-sync": "^3.0.4"
+    }
+}

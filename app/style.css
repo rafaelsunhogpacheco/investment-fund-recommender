@@ -1,0 +1,156 @@
+:root {
+    --fundo: #0f1115;
+    --cartao: #171a21;
+    --borda: #262b36;
+    --texto: #e6e9ef;
+    --suave: #9aa3b2;
+    --destaque: #4f9cf9;
+    --positivo: #37d399;
+    --negativo: #f87171;
+    --aviso-fundo: #2a2113;
+    --aviso-borda: #6b5220;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    background: var(--fundo);
+    color: var(--texto);
+    font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+main { max-width: 1180px; margin: 0 auto; padding: 32px 20px 64px; }
+
+.topo h1 { margin: 0 0 6px; font-size: 26px; letter-spacing: -0.2px; }
+.subtitulo { margin: 0 0 16px; color: var(--suave); }
+
+.aviso {
+    background: var(--aviso-fundo);
+    border: 1px solid var(--aviso-borda);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin: 0 0 24px;
+    font-size: 13.5px;
+    line-height: 1.55;
+}
+
+.colunas {
+    display: grid;
+    grid-template-columns: minmax(300px, 1fr) minmax(300px, 1.2fr);
+    gap: 18px;
+    align-items: start;
+}
+
+.cartao {
+    background: var(--cartao);
+    border: 1px solid var(--borda);
+    border-radius: 12px;
+    padding: 18px;
+}
+
+.cartao h2 { margin: 0 0 14px; font-size: 16px; text-transform: uppercase; letter-spacing: 0.6px; color: var(--suave); }
+
+.campo { margin-bottom: 16px; border: 0; padding: 0; }
+.campo label, .campo legend { display: block; margin-bottom: 6px; font-size: 13px; color: var(--suave); }
+
+input[type="number"] {
+    width: 100%;
+    padding: 9px 11px;
+    background: #10131a;
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    color: var(--texto);
+    font-size: 15px;
+}
+
+input[type="number"]:focus { outline: 2px solid var(--destaque); outline-offset: -1px; }
+
+.opcao { display: inline-flex; align-items: center; gap: 6px; margin: 0 14px 6px 0; color: var(--texto); font-size: 14px; }
+
+.dica { margin: 8px 0 0; font-size: 12.5px; color: var(--suave); }
+.ressalva { display: inline-block; margin-top: 4px; font-size: 11.5px; color: #7e8798; font-style: italic; }
+
+.botao {
+    width: 100%;
+    padding: 11px 14px;
+    background: #222733;
+    color: var(--texto);
+    border: 1px solid var(--borda);
+    border-radius: 9px;
+    font-size: 14.5px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.botao:hover:not(:disabled) { background: #2a3040; }
+.botao:disabled { opacity: 0.45; cursor: not-allowed; }
+.botao.primario { background: var(--destaque); border-color: var(--destaque); color: #08111f; }
+.botao.primario:hover:not(:disabled) { background: #6aaefb; }
+
+.progresso { height: 5px; background: #10131a; border-radius: 99px; margin: 14px 0 8px; overflow: hidden; }
+#barraProgresso { height: 100%; width: 0; background: var(--destaque); transition: width 0.25s; }
+
+.status { margin: 0 0 12px; font-size: 13px; color: var(--suave); min-height: 18px; }
+.erro { color: var(--negativo); }
+
+.metricas { display: grid; gap: 8px; }
+.metrica { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 13px; padding: 7px 10px; background: #10131a; border-radius: 8px; }
+.metrica .rotulo { color: var(--suave); }
+.metrica .valor { font-variant-numeric: tabular-nums; font-weight: 600; }
+.metrica.destaque { flex-direction: column; align-items: flex-start; border-left: 3px solid var(--destaque); }
+.metrica.destaque .valor { font-size: 24px; }
+.metrica .nota { font-size: 11.5px; color: var(--suave); line-height: 1.4; }
+
+.epocas-caixa { margin-top: 12px; }
+.epocas-caixa summary { cursor: pointer; font-size: 13px; color: var(--suave); }
+.epocas { max-height: 220px; overflow-y: auto; margin-top: 8px; font-variant-numeric: tabular-nums; }
+.epoca { display: flex; justify-content: space-between; gap: 8px; font-size: 12px; padding: 3px 0; color: var(--suave); border-bottom: 1px solid #1c2029; }
+.epoca .val { color: var(--destaque); }
+
+.resultados { margin-top: 18px; }
+.resumo { margin: 0 0 16px; font-size: 13.5px; color: var(--suave); }
+
+.lista { display: grid; gap: 10px; }
+
+.classe {
+    background: #10131a;
+    border: 1px solid var(--borda);
+    border-left: 3px solid var(--borda);
+    border-radius: 10px;
+    padding: 14px;
+}
+
+/* A faixa de risco sai de percentil da volatilidade real, nao de rotulo
+   arbitrario — a cor so torna isso visivel. */
+.classe.faixa-1 { border-left-color: #37d399; }
+.classe.faixa-2 { border-left-color: #8fd14f; }
+.classe.faixa-3 { border-left-color: #f4c453; }
+.classe.faixa-4 { border-left-color: #f59e5b; }
+.classe.faixa-5 { border-left-color: #f87171; }
+
+.classe header { display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px; }
+.classe .posicao { color: var(--suave); font-size: 12px; font-variant-numeric: tabular-nums; min-width: 20px; }
+.classe h3 { margin: 0; font-size: 14.5px; font-weight: 600; flex: 1; line-height: 1.35; }
+.classe .nota { font-variant-numeric: tabular-nums; font-size: 13px; color: var(--destaque); font-weight: 600; }
+
+.etiquetas { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+.etiqueta { font-size: 11px; padding: 2px 8px; border-radius: 99px; background: #1b2029; color: var(--suave); border: 1px solid var(--borda); }
+.etiqueta.classificacao { color: var(--texto); }
+.etiqueta.esg { color: var(--positivo); border-color: #24503f; }
+
+.estrategia { margin: 0 0 10px; font-size: 12.5px; color: var(--suave); }
+
+.numeros { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px; margin: 0; }
+.numeros div { background: #151922; border-radius: 7px; padding: 7px 9px; }
+.numeros dt { font-size: 11px; color: var(--suave); margin-bottom: 2px; }
+.numeros dd { margin: 0; font-size: 13.5px; font-variant-numeric: tabular-nums; font-weight: 600; }
+.numeros .positivo { color: var(--positivo); }
+.numeros .negativo { color: var(--negativo); }
+
+.rodape { margin-top: 28px; font-size: 12px; color: var(--suave); }
+.rodape a { color: var(--destaque); }
+
+@media (max-width: 860px) {
+    .colunas { grid-template-columns: 1fr; }
+}

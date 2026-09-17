@@ -1,0 +1,17 @@
+{
+    "name": "recomendador-fundos",
+    "version": "1.0.0",
+    "description": "Recomendador de classes de fundos da CVM por perfil do investidor",
+    "type": "module",
+    "private": true,
+    "scripts": {
+        "verificar:treino": "node verificar/treino.node.mjs",
+        "verificar:app": "node verificar/app.browser.mjs",
+        "app": "npm start --prefix app"
+    },
+    "license": "ISC",
+    "devDependencies": {
+        "@tensorflow/tfjs": "^4.22.0",
+        "puppeteer-core": "^24.0.0"
+    }
+}

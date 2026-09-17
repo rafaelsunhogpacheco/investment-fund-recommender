@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recomendador de classes de fundos — CVM</title>
+    <!-- Favicon embutido: evita o 404 de /favicon.ico, que suja o console. -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='13' font-size='13'>&#128200;</text></svg>">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <main>
+        <header class="topo">
+            <h1>Recomendador de classes de fundos</h1>
+            <p class="subtitulo">
+                Classes da base pública da CVM ordenadas por aderência ao perfil,
+                por uma rede treinada no browser com TensorFlow.js.
+            </p>
+            <!-- Exigencia do PLANO: suitability e atividade regulada (CVM Res. 30).
+                 O aviso nao e rodape — fica no topo, antes de qualquer numero. -->
+            <p class="aviso">
+                <strong>Material educacional — não é recomendação de investimento.</strong>
+                Análise de perfil do investidor (<i>suitability</i>) é atividade regulada
+                pela Resolução CVM 30 e só pode ser feita por instituição autorizada.
+                A base de clientes que treina o modelo é <strong>simulada</strong>; os dados
+                de fundos são reais, da CVM.
+            </p>
+        </header>
+
+        <div class="colunas">
+            <section class="cartao">
+                <h2>Perfil do investidor</h2>
+                <form id="formPerfil">
+                    <div class="campo">
+                        <label for="idade">Idade</label>
+                        <input type="number" id="idade" min="18" max="100" value="35">
+                    </div>
+
+                    <div class="campo">
+                        <label for="capital">Capital disponível (R$)</label>
+                        <input type="number" id="capital" min="0" step="1000" value="50000">
+                        <p class="dica">
+                            Libera: <strong id="elegibilidade"></strong>.
+                            <br>
+                            <span class="ressalva">
+                                Aproximação: os dados abertos da CVM não trazem aporte mínimo
+                                (está no regulamento de cada fundo). O público-alvo é o proxy
+                                disponível, com os limites da Res. CVM 30.
+                            </span>
+                        </p>
+                    </div>
+
+                    <fieldset class="campo">
+                        <legend>Apetite a risco</legend>
+                        <label class="opcao"><input type="radio" name="apetite" value="conservador" checked> Conservador</label>
+                        <label class="opcao"><input type="radio" name="apetite" value="moderado"> Moderado</label>
+                        <label class="opcao"><input type="radio" name="apetite" value="arrojado"> Arrojado</label>
+                    </fieldset>
+
+                    <fieldset class="campo">
+                        <legend>Conhecimento do mercado</legend>
+                        <label class="opcao"><input type="radio" name="conhecimento" value="baixo" checked> Baixo</label>
+                        <label class="opcao"><input type="radio" name="conhecimento" value="medio"> Médio</label>
+                        <label class="opcao"><input type="radio" name="conhecimento" value="alto"> Alto</label>
+                    </fieldset>
+
+                    <button id="btnRecomendar" class="botao primario" disabled>
+                        Recomendar classes
+                    </button>
+                </form>
+            </section>
+
+            <section class="cartao">
+                <h2>Modelo</h2>
+                <button id="btnTreinar" class="botao">Treinar novamente</button>
+                <div class="progresso"><div id="barraProgresso"></div></div>
+                <p id="statusTreino" class="status">Carregando...</p>
+                <div id="metricas" class="metricas"></div>
+                <details class="epocas-caixa">
+                    <summary>Épocas</summary>
+                    <div id="epocas" class="epocas"></div>
+                </details>
+            </section>
+        </div>
+
+        <section class="cartao resultados">
+            <h2>Classes recomendadas</h2>
+            <p id="resumoRecomendacoes" class="resumo">
+                Treine o modelo e informe um perfil para ver a lista.
+            </p>
+            <div id="listaRecomendacoes" class="lista"></div>
+        </section>
+
+        <footer class="rodape">
+            <p>
+                Fonte: <a href="https://dados.cvm.gov.br/dados/FI/" rel="noreferrer">Portal de Dados Abertos da CVM</a>
+                — cadastro de classes (Res. CVM 175) e informe diário.
+                Volatilidade e retorno calculados sobre 12 meses de cota diária.
+            </p>
+        </footer>
+    </main>
+
+    <script type="module" src="./src/index.js"></script>
+</body>
+
+</html>
