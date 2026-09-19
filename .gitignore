@@ -22,3 +22,11 @@ verificar/app.png
 
 # Os JSON em app/dados/ SAO versionados de proposito: sao o que faz o app
 # rodar sem precisar do pipeline Python.
+
+# Gravacao da demo: o bruto (~12 MB) e os marcos sao regeneraveis com
+# `npm run demo`. O MP4 serve para redes sociais e fica local; o GIF e
+# versionado porque e ele que o README exibe (MP4 commitado vira link, nao
+# player, no GitHub).
+demo/bruto.webm
+demo/.marcos.json
+demo/*.mp4

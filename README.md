@@ -10,6 +10,8 @@ rede neural treinada no browser com TensorFlow.js.
 > **a base de clientes que treina o modelo é simulada** — ver
 > [A base simulada é o limite do projeto](#a-base-simulada-é-o-limite-do-projeto).
 
+![Demonstração: perfil moderado recebendo classes ordenadas por aderência](demo/recomendador-fundos.gif)
+
 ## Duas peças
 
 Séries temporais de 6,4 milhões de linhas não cabem no browser, então o projeto
