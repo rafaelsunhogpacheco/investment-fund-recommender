@@ -3,8 +3,8 @@
 //   node demo/gravar.mjs
 //
 // Produz:
-//   demo/recomendador-fundos.mp4   ~28s, 1280x720 H.264 — para LinkedIn
-//   demo/recomendador-fundos.gif   ~10s, 800px — para o README
+//   demo/fund-recommender.mp4   ~28s, 1280x720 H.264 — para LinkedIn
+//   demo/fund-recommender.gif   ~10s, 800px — para o README
 //
 // O treino leva ~110s e nao cabe numa demo de 30s. A gravacao acontece em
 // tempo real e a aceleracao e aplicada DEPOIS, por trecho: 14x no treino,
@@ -25,8 +25,8 @@ const MARCOS = join(aqui, '.marcos.json');
 // `--pos` refaz so a pos-producao sobre o bruto ja gravado — util para ajustar
 // velocidade ou formato sem esperar os ~2 minutos de gravacao de novo.
 const SO_POS = process.argv.includes('--pos');
-const MP4 = join(aqui, 'recomendador-fundos.mp4');
-const GIF = join(aqui, 'recomendador-fundos.gif');
+const MP4 = join(aqui, 'fund-recommender.mp4');
+const GIF = join(aqui, 'fund-recommender.gif');
 
 const CANDIDATOS_CHROME = [
     process.env.CHROME_PATH,
