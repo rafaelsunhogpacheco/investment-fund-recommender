@@ -200,7 +200,20 @@ unlinkSync(paleta);
 partes.forEach((p) => unlinkSync(p));
 unlinkSync(lista);
 
+// Folha de contato: 9 quadros espalhados pela duracao, numa grade 3x3. Serve
+// para conferir o video inteiro de relance, sem assistir os 28s.
+// `fps=1/N` em vez de `select=not(mod(n,N))`: a virgula dentro da expressao do
+// select precisa de escape e quebra dependendo de como o comando e montado.
+const CONTATO = join(aqui, '.contato.png');
+const duracao = Number(
+    spawnSync(ffmpeg.replace(/ffmpeg$/, 'ffprobe'), ['-v', 'error', '-show_entries',
+        'format=duration', '-of', 'csv=p=0', MP4]).stdout?.toString().trim()
+) || 28;
+ff(['-y', '-i', MP4, '-vf', `fps=1/${(duracao / 9).toFixed(2)},scale=420:-1,tile=3x3`,
+    '-frames:v', '1', CONTATO]);
+
 const tamanho = (p) => (spawnSync('stat', ['-c', '%s', p]).stdout.toString().trim() / 1e6).toFixed(2);
 console.log(`\nMP4: ${MP4} (${tamanho(MP4)} MB)`);
 console.log(`GIF: ${GIF} (${tamanho(GIF)} MB)`);
 console.log(`bruto (nao versionado): ${BRUTO} (${tamanho(BRUTO)} MB)`);
+console.log(`folha de contato: ${CONTATO}`);
